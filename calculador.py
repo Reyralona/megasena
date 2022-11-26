@@ -2543,21 +2543,53 @@ JOGOS=[
 [4, 5, 30, 33, 41, 52], 
 ]
 
-counter = {}
-
-for jogo in JOGOS:
-    for numbers in jogo:
-        counter[numbers] = counter.get(numbers,  0) + 1
-        
-#print(dict(sorted(counter.items(),  key=lambda item: item[1])))
-
 NUM_SORT = {26: 211,  55: 217,  21: 218,  15: 223,  22: 228,  48: 234,  9: 237,  3: 237,  31: 238,  7: 238,  14: 239,  25: 241,  57: 241,  60: 241,  19: 242,  39: 242,  47: 243,  59: 243,  40: 243,  12: 246,  58: 246,  50: 246,  20: 247,  1: 247,  45: 248,  18: 248,  6: 253,  46: 253,  52: 255,  13: 257,  2: 258,  8: 260,  24: 260,  36: 261,  11: 262,  49: 263,  32: 263,  51: 263,  56: 263,  29: 263,  43: 263,  16: 264,  27: 265,  35: 265,  38: 266,  54: 266,  34: 267,  17: 267,  28: 268,  44: 268,  30: 269,  41: 272,  23: 272,  4: 272,  33: 275,  42: 276,  37: 277,  5: 280,  10: 290,  53: 292}
 
-#while True:
-#    inp = list(eval(input(">> ")))
-#    
-#    if inp in JOGOS:
-#        print("Já sorteado!")
-#    else:
-#        print("Nunca sorteado...")
+def jogar_jogo():
+    while True:
+        inp = list(eval(input(">> ")))
+        if inp in JOGOS:
+            print("Já sorteado!")
+            break
+        else:
+            print("Nunca sorteado...")
+            break
+
+def maquina_joga(): 
+    start_time = tm.time()    
+    counter = 0
+    game = [] 
+    while game not in JOGOS:
+        game.clear()
+        while len(game) < 6:
+            num = rnd.randint(1, 60)
+            game.append(num) if num not in game else 0       
+        game = sorted(game)  
+        counter += 1
+    
+    print(game, "máquina ganhou! depois de:" , counter, "tentativas.")
+    print(tm.time() - start_time, "segundos")
+    
+    
+            
+            
+            #if game == jogo:
+            #    print(game)
+            #    print("máquina ganhou!")
+            #    tm.sleep(1)
+            #    break
+            #else:
+            #    print(game)
+            #    print("máquina perdeu...")
+            #    tm.sleep(1)
+            #    break
+
+while True:
+    inp = eval(input("input >> "))
+    if inp == 1:
+        jogar_jogo()
+    if inp == 2:
+        maquina_joga()
+    else:
+        break
 
